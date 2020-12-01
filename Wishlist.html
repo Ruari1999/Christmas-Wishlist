@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Ruari's app</title>
+ <script>
+  function addItem() {
+   var newItem = document.createElement("div");
+   newItem.innerHTML = document.getElementById("box").value;
+   newItem.onclick = removeItem;
+   document.getElementById("Item").appendChild(newItem);
+   saveItem();
+  }
+  function removeItem() {
+   document.getElementById("Item").removeChild(this);
+   saveItem();
+  }
+  function saveItem() {
+   localStorage.storedItem = document.getElementById("Item").innerHTML;
+  }
+  function loadItem() {
+   document.getElementById("Item").innerHTML = localStorage.storedItem;
+   for(var i = 0; i < Item.children.length; i++) {
+    Item.children[i].onclick = removeItem;
+   }
+  }
+  function addPrice() {
+   var newPrice = document.createElement("div");
+   newPrice.innerHTML = document.getElementById("box").value;
+   newPrice.onclick = removePrice;
+   document.getElementById("Price").appendChild(newPrice);
+   savePrice();
+  }
+  function removePrice() {
+   document.getElementById("Price").removeChild(this);
+   savePrice();
+  }
+  function savePrice() {
+   localStorage.storedPrice = document.getElementById("Price").innerHTML;
+  }
+  function loadPrice() {
+   document.getElementById("Price").innerHTML = localStorage.storedPrice;
+   for(var i = 0; i < Price.children.length; i++) {
+    Price.children[i].onclick = removePrice;
+   }
+  }
+
+ </script>
+ <style>
+  .header {
+    height:80x; 
+    width: 360px; 
+    background-color: green; 
+    float: center; 
+    padding:5px; 
+    margin:10px;
+    text-align:centre; 
+    font-size:24px;
+  }
+  .app {
+    height:500px;
+    width: 360px; 
+    background-color: lightblue; 
+    float: center; 
+    padding:5px; 
+    margin:10px;
+  }
+  input[type="button"] {
+   background-color: white;
+  }
+ </style>
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    
+
+</head>
+<body>
+ <div class="header">
+  <img src="" style="float: left;"> 
+  <p><b><u>Christmas Wishlist</b></u></p>
+ </div>
+
+ <div class="app">
+  <input type="text" id="box" value="Type here"/>
+  <br/>
+  <button onclick="addItem();" class="col-sm-3"  style="background-color:red;">Add Item</button>
+  <button onclick="addPrice();" class="col-sm-3" style="background-color:yellow;">Add Price</button>
+  <br/>
+ 
+   
+   <div class="row">
+  <div class="col-sm-3" id="Item"><b><u>Item</b></u></div>
+  <div class="col-sm-3"id="Price"><b><u>Price</b></u></div>
+</div>
+ </div>
+ <script>
+  if(localStorage.storedItem) {
+   loadItem();
+  }
+  if(localStorage.storedPrice) {
+   loadPrice();
+  }
+ </script>
+</body>
+</html>
